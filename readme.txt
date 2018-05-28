@@ -1,24 +1,23 @@
-MPS2+ SSE-200 Secure/Non-secure Blinky Example
-This example swicthes ON and OFF the MPS2 SCC LEDs based on the MPS2 user button pressed.
+Musca-A1 Secure/Non-secure Blinky example
+This example switches the Musca LEDs ON and OFF with a hard coded interval.
 
-The implementation is divided in secure and non-secure code.
+The implementation is divided into secure and non-secure code projects. You need to set a project as the "Active Project" in order to compile it, load it, or view it's settings.
 
 The secure code performs the follow functionality:
 
 Sets secure and non-secure system configuration.
-Gets and provides button states.
-Sleep function.
-Switchs on/off user LEDs based on user button states.
+Handles time management
+Initilizes GPIO pins for the LEDs
+Switches user LEDs on/off
 The non-secure code performs the follow functionality:
 
-Requests to the secure code:
-Button states.
-Sleep for X amount of ms.
-Switchs on/off the SCC LEDs based on:
-if User button 0 is pressed, the SCC LEDs blink state is enabled.
-If User button 1 is pressed, the SCC LEDs blink state is disabled.
-To compile the example correctly it is necessary to first compile the secure code, and then the non-secure code.
-Compiling the secure code generates the veneers object file required by the non-secure code to compile correctly.
+If there is only one LED
+Asks the secure code to switch LED state
+Maintains LED state based on the return value from the secure code
+If there are many LEDs
+Maintains the state of the LED that has changed the last time based on the return value from the secure code
+Asks the secure code to switch state of the next LED
+All the target options necessary for compiling, loading and debugging this example are already set in the project for you.  These can be viewed by clicking on the "Options for Target" button for both projects. 
 
-See the ReadMe file provided with the example for further information.
-https://community.arm.com/dev-platforms/w/docs/353/mps2-sse-200-secure-non-secure-blinky-example
+To compile this example correctly the secure code needs to be compiled first and then the non-secure. Each projects image can be loaded onto the board by clicking the Load icon. It does not matter which image is loaded first.
+https://community.arm.com/dev-platforms/w/docs/321/musca-a1-secure-non-secure-blinky-example
